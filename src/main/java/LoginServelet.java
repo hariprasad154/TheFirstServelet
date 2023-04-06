@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
         urlPatterns = {"/LoginServlet"},
         initParams = {
             @WebInitParam(name="user",value = "Admin"),
-             @WebInitParam(name="pwd",value = "Pass")
+             @WebInitParam(name="pwd",value = "Pass@123")
         }
         )
 public class LoginServelet extends HttpServlet {
@@ -29,7 +29,11 @@ public class LoginServelet extends HttpServlet {
         String pwd=getServletConfig().getInitParameter("pwd");
 
         Pattern userPattern = Pattern.compile("^[A-Z]+[a-z]{3,}$");
-         Matcher UserMatcher = userPattern.matcher(user);
+        Pattern passwordPattern = Pattern.compile("^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$");
+
+        Matcher passwordMatcher = passwordPattern.matcher(password);
+
+        Matcher UserMatcher = userPattern.matcher(user);
 
         if (UserMatcher.matches()) {
             if(userId.equals(user) && pwd.equals(password)){
