@@ -10,6 +10,7 @@ public class demo extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse res){
         res.setContentType("text/html");
         try {
+
             res.getWriter().println("<h1>Java Home</h1>");
         } catch (IOException e) {
             throw new RuntimeException(e);
